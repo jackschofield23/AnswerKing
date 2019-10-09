@@ -32,7 +32,7 @@ export class HomeLayout {
     // You should not continue with the calls to other APIs
     // if the order with the given id does not exist.
 
-    //this.order = await this.orderService.getOrderByID(this.orderId);
+    this.order = await this.orderService.getOrderByID(this.orderId);
     this.categories = await this.categoriesService.getCategories();
     this.items = await this.itemService.getItems();
 
@@ -44,6 +44,7 @@ export class HomeLayout {
 
     console.log(this.categories);
     console.log(this.items);
+    console.log(this.order);
   }
 
   public selectCategory(id: string) {

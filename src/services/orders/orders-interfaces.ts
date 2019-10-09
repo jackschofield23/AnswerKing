@@ -1,10 +1,10 @@
 interface IOrder {
   id: string;
-  createdOn: string;
-  lastUpdated: string;
-  orderStatus: OrderStatus;
-  orderTotal: number;
-  lineItems: ILineItemProduct[];
+  total: number;
+  amountPaid: number;
+  change: number;
+  complete: boolean;
+  items: IItemCategory[];
 }
 
 interface ILineItem {
