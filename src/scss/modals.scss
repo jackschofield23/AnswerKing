@@ -1,0 +1,14 @@
+body {
+  &.ux-dialog-open {
+    overflow: hidden !important;
+  }
+}
+
+ux-dialog-overlay {
+  @extend .modal-background;
+}
+
+ux-dialog-container {
+  @extend .modal;
+  @extend .modal.is-active;
+}

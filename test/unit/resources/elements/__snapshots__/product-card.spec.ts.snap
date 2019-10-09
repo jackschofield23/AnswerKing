@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product Card Element renders the correct information 1`] = `
+<product-card
+  au-target-id="4"
+  class="au-target"
+  product.bind="product"
+>
+  <div
+    class="card"
+  >
+    <header
+      class="card-header"
+    >
+      <p
+        class="card-header-title"
+      >
+        
+        Chips | Sundries
+      
+      </p>
+    </header>
+    <div
+      class="card-content"
+    >
+      <div
+        class="content"
+      >
+        <p>
+          Nothing else to add.
+        </p>
+        <p>
+          £2.99
+        </p>
+      </div>
+    </div>
+    <footer
+      class="card-footer"
+    >
+      <a
+        class="card-footer-item"
+      >
+        Add to Order
+      </a>
+    </footer>
+  </div>
+</product-card>
+`;

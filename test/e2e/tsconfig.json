@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "experimentalDecorators": true,
+    "baseUrl": "../node_modules",
+    "target": "es5",
+    "lib": ["es5", "es6", "dom"],
+    "types": ["cypress"]
+  },
+  "include": [
+    "../node_modules/cypress",
+    "**/*.ts",
+    "custom-types.d.ts",
+    "integration/*"
+  ]
+}

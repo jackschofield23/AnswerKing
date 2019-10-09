@@ -1,0 +1,17 @@
+<template>
+  <section class="hero is-light is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container is-fluid">
+        <div class="content has-text-centered">
+          <button
+            disabled.bind="executing"
+            class="button is-success is-large"
+            click.delegate="confirmStart()"
+          >
+            Create Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>

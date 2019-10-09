@@ -1,0 +1,21 @@
+<template>
+  <div class="modal-content">
+    <div class="box">
+      <div class="media">
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>${title}</strong>
+              <br />
+              ${message}
+            </p>
+          </div>
+          <div class="has-text-right">
+            <button class="button" click.delegate="ok()">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="modal-close is-large" click.delegate="cancel()"></button>
+</template>

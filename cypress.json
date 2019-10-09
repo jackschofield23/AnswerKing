@@ -1,0 +1,10 @@
+{
+  "baseUrl": "http://localhost:8080",
+  "fixturesFolder": "test/e2e/fixtures",
+  "integrationFolder": "test/e2e/integration",
+  "pluginsFile": "test/e2e/plugins",
+  "screenshotsFolder": "test/e2e/screenshots",
+  "supportFile": "test/e2e/support",
+  "videosFolder": "test/e2e/videos",
+  "ignoreTestFiles": "*.po.ts"
+}
