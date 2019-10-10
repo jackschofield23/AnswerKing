@@ -5,7 +5,7 @@
     <ul class="list-group">
       <li repeat.for="category of categories" class="list-group-item ${category.id == $parent.selectedid ? 'active' : ''}" >
         <a click.delegate="$parent.select(category)">
-            <h4 style=" font-weight: bold;">${category.title}</h4>
+            <h4 class="categorytitle">${category.title}</h4>
         </a>         
       </li>
     </ul>

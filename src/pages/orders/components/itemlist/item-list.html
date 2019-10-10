@@ -4,7 +4,11 @@
     <div class="item-list">
       <ul class="list-group">
         <li repeat.for="item of items" class="list-group-item" >
-            <h4>${item.title}</h4>
+            <a click.delegate="$parent.select(category)">
+                <h4 class="itemtitle">${item.title}</h4>
+                <p>${item.description}</p>
+            </a>
+       
         </li>
       </ul>
     </div>
