@@ -1,19 +1,19 @@
 <template>
-  <require from="./components/category-list"></require>
-  <require from="./components/item-list"></require>
-  <require from="./styles/orders-layout.scss"></require>
+  <require from="../components/categorylist/category-list"></require>
+  <require from="../components/itemlist/item-list"></require>
+  <require from="./orders-layout.scss"></require>
 
   <div class="container is-fluid">
    
     
       <div class="categorydiv">
-          <h2 class="title" style="text-align: center;">Categories</h2>
+          <h2 class="title" style="text-align: center; margin-top: 25px;">Categories</h2>
         <category-list categories.two-way="categories" selectedid.two-way="selectedid">
 
         </category-list>
       </div>
       <div class="itemdiv">
-          <h2 class="title" style="text-align: center;">Items</h2>
+          <h2 class="title" style="text-align: center; margin-top: 25px;">Items</h2>
           <item-list items.two-way="items"></item-list>
       </div>
           <!-- Product stuff goes here -->

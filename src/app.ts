@@ -21,13 +21,13 @@ export class App {
         route: 'orders',
         name: 'order',
         title: 'Order',
-        moduleId: PLATFORM.moduleName('pages/orders/orders-layout'),
+        moduleId: PLATFORM.moduleName('pages/orders/layout/orders-layout'),
       },
       {
         route: 'basket',
         name: 'basket',
         title: 'Basket',
-        moduleId: PLATFORM.moduleName('pages/basket/basket-layout'),
+        moduleId: PLATFORM.moduleName('pages/basket/layout/basket-layout'),
       },      
     ]);
   }
