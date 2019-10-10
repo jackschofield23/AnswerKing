@@ -1,4 +1,4 @@
-import { autoinject } from 'aurelia-framework';
+import { autoinject, bindable } from 'aurelia-framework';
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 
 import { CategoriesService } from 'services/categories/categories-service';
@@ -15,11 +15,12 @@ export class ItemListCustomElement {
   }
 
   private subscriptions: Subscription[] = [];
+  @bindable
   public items: IItem[] = [];
   public selectedId: ICategoryId;
 
   public async created(){
-    this.items = await this.itemService.getItems();
+    //this.items = await this.itemService.getItems();
   }
 
   public attached() {

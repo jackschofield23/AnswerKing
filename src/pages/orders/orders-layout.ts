@@ -13,8 +13,9 @@ export class HomeLayout {
   ) {}
 
   public categories: ICategory[] = [];
+  public allitems: IItem[] = [];
   public items: IItem[] = [];
-  public currentCategoryId: string;
+  @observable public currentCategory: ICategory;
   @observable public selectedid: ICategoryId;
   public order: IOrder;
 
@@ -35,7 +36,7 @@ export class HomeLayout {
 
     this.order = await this.orderService.getOrderByID(this.orderId);
     this.categories = await this.categoriesService.getCategories();
-    this.items = await this.itemService.getItems();
+    this.allitems = await this.itemService.getItems();
 
     const firstCategory = this.categories[0];
 
@@ -49,19 +50,23 @@ export class HomeLayout {
   }
 
   valueChanged(newValue) {
-    if (newValue) {}
-      
+    if (newValue) {}      
   }
 
   public selectCategory(id: string) {
     this.categories.forEach(c => {
-      (<any>c).selected = c.id === id;
+      if(c.id == id){
+        this.currentCategory = c;
+        //console.log(c);
+        this.items = this.allitems.filter(item => item.categories.some(cat => cat.id == id));
+        console.log(this.items);
+      }
     });
-
-    this.currentCategoryId = id;
   }
 
   selectedidChanged(newvalue, oldvalue){
-    console.log(newvalue);
+    //console.log(newvalue);
+    this.selectCategory(newvalue);
   }
+
 }
