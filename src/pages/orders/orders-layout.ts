@@ -38,10 +38,10 @@ export class HomeLayout {
     this.categories = await this.categoriesService.getCategories();
     this.allitems = await this.itemService.getItems();
 
-    const firstCategory = this.categories[0];
+    const firstCategory : string = '0';
 
     if (firstCategory) {
-      this.selectCategory(firstCategory.id);
+      this.selectCategory(firstCategory);
     }
 
     console.log(this.categories);
@@ -54,18 +54,23 @@ export class HomeLayout {
   }
 
   public selectCategory(id: string) {
-    this.categories.forEach(c => {
-      if(c.id == id){
-        this.currentCategory = c;
-        //console.log(c);
-        this.items = this.allitems.filter(item => item.categories.some(cat => cat.id == id));
-        console.log(this.items);
-      }
-    });
+    if(id == '0'){
+      this.items = this.allitems;
+    }
+    else{
+      this.categories.forEach(c => {
+        if(c.id == id){
+          this.currentCategory = c;
+        
+          this.items = this.allitems.filter(item => item.categories.some(cat => cat.id == id));
+         
+        }
+      });
+    }
   }
 
   selectedidChanged(newvalue, oldvalue){
-    //console.log(newvalue);
+
     this.selectCategory(newvalue);
   }
 
