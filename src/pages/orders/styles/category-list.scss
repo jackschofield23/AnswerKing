@@ -1,0 +1,23 @@
+.category-list {
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  width: 30%;
+  padding: 10px;
+}
+
+
+li.list-group-item {
+  list-style: none;
+  border: 1px solid #ddd;
+  text-align: center;
+  text-decoration: solid;
+  padding: 10px;
+}
+
+li.list-group-item > a {
+  text-decoration: none;
+}
+
+li.list-group-item.active > a {
+  color: white;
+}

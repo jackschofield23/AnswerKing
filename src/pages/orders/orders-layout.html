@@ -1,44 +1,22 @@
 <template>
-  <require from="./components/order-table"></require>
   <require from="./components/category-list"></require>
+  <require from="./styles/orders-layout.scss"></require>
 
   <div class="container is-fluid">
-    <div class="section">
-      <div class="columns">
-        <div class="column">
-          <!-- Product stuff goes here -->
-          <h2 class="title">Selection</h2>
-          <div class="tabs is-medium">
-            <ul>
-              <template repeat.for="category of categories">
-                <li
-                  click.delegate="selectCategory(category.id)"
-                  class="${category.selected ? 'is-active' : ''}"
-                >
-                  <a title.bind="category.description">${category.name}</a>
-                </li>
-              </template>
-            </ul>
-          </div>
+    <h2 class="title">Categories</h2>
+      <div>
+      
+        <category-list>
 
-          <div class="columns">
-            <template repeat.for="product of products">
-              <!-- display products based current category -->
-              <product-card
-                if.bind="product.category.id === currentCategoryId"
-                class="column is-3"
-                product.bind="product"
-              ></product-card>
-            </template>
-          </div>
-        </div>
+        </category-list>
+      </div>
+          <!-- Product stuff goes here -->
+
+  </div>
 
         <!-- pass in the order object into the table -->
-        <order-table class="column is-3"></order-table>
 
-        <category-list>
-          
-        </category-list>
+
       </div>
     </div>
   </div>
