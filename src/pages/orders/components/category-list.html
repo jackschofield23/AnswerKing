@@ -3,7 +3,7 @@
 
   <div class="category-list">
     <ul class="list-group">
-      <li repeat.for="category of categories" class="list-group-item ${category.id == $parent.selectedId ? 'active' : ''}" >
+      <li repeat.for="category of categories" class="list-group-item ${category.id == $parent.selectedid ? 'active' : ''}" >
         <a click.delegate="$parent.select(category)">
             <h4 style=" font-weight: bold;">${category.title}</h4>
         </a>         

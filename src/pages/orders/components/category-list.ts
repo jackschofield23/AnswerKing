@@ -1,4 +1,4 @@
-import { autoinject, bindable } from 'aurelia-framework';
+import { autoinject, bindable, observable } from 'aurelia-framework';
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 
 import { CategoriesService } from 'services/categories/categories-service';
@@ -15,11 +15,12 @@ export class CategoryListCustomElement {
   }
 
   private subscriptions: Subscription[] = [];
+
   @bindable
   public categories: ICategory[] = [];
 
   @bindable
-  public selectedId: ICategoryId;
+  public selectedid: ICategoryId;
 
 
   public async created(){
@@ -40,8 +41,14 @@ export class CategoryListCustomElement {
     console.log(item);
   }
 
+  selectedidChanged(newValue, oldValue){
+    //console.log(newValue);
+  }
+
   select(category) {
-    this.selectedId = category.id;
+    this.selectedid = category.id;
     return true;
   }
+
+
 }

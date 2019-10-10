@@ -1,4 +1,4 @@
-import { autoinject } from 'aurelia-framework';
+import { autoinject, observable } from 'aurelia-framework';
 
 import { CategoriesService } from 'services/categories/categories-service';
 import { OrdersService } from 'services/orders/orders-service';
@@ -15,7 +15,7 @@ export class HomeLayout {
   public categories: ICategory[] = [];
   public items: IItem[] = [];
   public currentCategoryId: string;
-  public selectedId: ICategoryId;
+  @observable public selectedid: ICategoryId;
   public order: IOrder;
 
   private orderId: string;
@@ -48,11 +48,20 @@ export class HomeLayout {
     console.log(this.order);
   }
 
+  valueChanged(newValue) {
+    if (newValue) {}
+      
+  }
+
   public selectCategory(id: string) {
     this.categories.forEach(c => {
       (<any>c).selected = c.id === id;
     });
 
     this.currentCategoryId = id;
+  }
+
+  selectedidChanged(newvalue, oldvalue){
+    console.log(newvalue);
   }
 }
