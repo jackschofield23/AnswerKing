@@ -38,14 +38,14 @@ export class WelcomeLayout {
 
   public async startOrder() {
     this.executing = true;
-    const orderId = await this.ordersService.createOrder();
+    //const orderId = await this.ordersService.createOrder();
     this.executing = false;
 
-    if (!orderId) {
-      // Let the user know that something has happened.
-      return;
-    }
+    // if (!orderId) {
+    //   // Let the user know that something has happened.
+    //   return;
+    // }
 
-    this.appRouter.navigateToRoute('order', { id: orderId });
+    this.appRouter.navigateToRoute('order');
   }
 }

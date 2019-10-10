@@ -4,7 +4,7 @@ import { RouterConfiguration } from 'aurelia-router';
 @autoinject
 export class App {
   public configureRouter(config: RouterConfiguration) {
-    config.title = '🐱 El Gato Blanco';
+    config.title = 'Answer King';
 
     config.map([
       {
@@ -18,11 +18,17 @@ export class App {
         moduleId: PLATFORM.moduleName('pages/welcome/welcome-layout'),
       },
       {
-        route: 'orders/:id',
+        route: 'orders',
         name: 'order',
         title: 'Order',
         moduleId: PLATFORM.moduleName('pages/orders/orders-layout'),
       },
+      {
+        route: 'basket',
+        name: 'basket',
+        title: 'Basket',
+        moduleId: PLATFORM.moduleName('pages/basket/basket-layout'),
+      },      
     ]);
   }
 }
