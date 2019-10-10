@@ -1,3 +1,4 @@
+import { Basket } from './../../basket/basket';
 import { autoinject, observable } from 'aurelia-framework';
 
 import { CategoriesService } from 'services/categories/categories-service';
@@ -18,6 +19,8 @@ export class HomeLayout {
   @observable public currentCategory: ICategory;
   @observable public selectedid: ICategoryId;
   public order: IOrder;
+
+  public basket: Basket = Basket.getInstance();
 
   private orderId: string;
 
@@ -44,9 +47,13 @@ export class HomeLayout {
       this.selectCategory(firstCategory);
     }
 
-    console.log(this.categories);
-    console.log(this.items);
-    console.log(this.order);
+
+
+    //console.log(this.categories);
+    //console.log(this.items);
+    //console.log(this.order);
+    console.log(this.basket.BasketList);
+
   }
 
   valueChanged(newValue) {

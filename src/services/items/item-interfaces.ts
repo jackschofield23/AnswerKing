@@ -25,3 +25,13 @@ interface IItemUpdate {
 interface IItemId {
   id: string;
 }
+
+interface IBasketItem {
+  id: string;
+  title: string;
+  price: number;
+  description: string;
+  validUntil: string;
+  categories: ICategoryItem[];
+  quantity: number;
+}
