@@ -15,6 +15,7 @@ export class HomeLayout {
   public categories: ICategory[] = [];
   public items: IItem[] = [];
   public currentCategoryId: string;
+  public selectedId: ICategoryId;
   public order: IOrder;
 
   private orderId: string;

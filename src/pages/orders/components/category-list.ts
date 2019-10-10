@@ -17,7 +17,10 @@ export class CategoryListCustomElement {
   private subscriptions: Subscription[] = [];
   @bindable
   public categories: ICategory[] = [];
+
+  @bindable
   public selectedId: ICategoryId;
+
 
   public async created(){
     //this.categories = await this.categoriesService.getCategories();

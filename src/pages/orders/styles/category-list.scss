@@ -20,3 +20,8 @@ li.list-group-item > a {
 li.list-group-item.active > a {
   color: white;
 }
+
+li.list-group-item.active {
+  color: blue;
+  background-color: #2d98fc;
+}
