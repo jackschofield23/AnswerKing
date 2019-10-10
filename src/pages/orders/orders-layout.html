@@ -1,23 +1,30 @@
 <template>
   <require from="./components/category-list"></require>
+  <require from="./components/item-list"></require>
   <require from="./styles/orders-layout.scss"></require>
 
   <div class="container is-fluid">
-    <h2 class="title">Categories</h2>
-      <div>
-      
-        <category-list>
+   
+    
+      <div class="categorydiv">
+          <h2 class="title" style="text-align: center;">Categories</h2>
+        <category-list categories.bind="categories">
 
         </category-list>
       </div>
+      <div class="itemdiv">
+          <h2 class="title" style="text-align: center;">Items</h2>
+          <item-list></item-list>
+      </div>
           <!-- Product stuff goes here -->
-
+    
   </div>
 
         <!-- pass in the order object into the table -->
-
+      
 
       </div>
     </div>
   </div>
+  
 </template>

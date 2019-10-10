@@ -1,0 +1,12 @@
+<template>
+    <require from="../styles/item-list.scss"></require>
+  
+    <div class="item-list">
+      <ul class="list-group">
+        <li repeat.for="item of items" class="list-group-item" >
+            <h4>${item.title}</h4>
+        </li>
+      </ul>
+    </div>
+  </template>
+  

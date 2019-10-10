@@ -1,4 +1,4 @@
-import { autoinject, bindable } from 'aurelia-framework';
+import { autoinject } from 'aurelia-framework';
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 
 import { CategoriesService } from 'services/categories/categories-service';
@@ -6,7 +6,7 @@ import { OrdersService } from 'services/orders/orders-service';
 import { ItemService } from 'services/items/item-service';
 
 @autoinject
-export class CategoryListCustomElement {
+export class ItemListCustomElement {
   constructor(private events: EventAggregator,     
     private orderService: OrdersService,
     private categoriesService: CategoriesService,
@@ -15,12 +15,11 @@ export class CategoryListCustomElement {
   }
 
   private subscriptions: Subscription[] = [];
-  @bindable
-  public categories: ICategory[] = [];
+  public items: IItem[] = [];
   public selectedId: ICategoryId;
 
   public async created(){
-    //this.categories = await this.categoriesService.getCategories();
+    this.items = await this.itemService.getItems();
   }
 
   public attached() {
