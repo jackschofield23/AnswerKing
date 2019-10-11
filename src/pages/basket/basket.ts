@@ -1,5 +1,8 @@
+import { EventAggregator } from 'aurelia-event-aggregator';
+import { isBigIntLiteral } from "@babel/types";
 
-export class Basket{
+
+export class Basket {
 
   private static _instance: Basket;
 
@@ -20,8 +23,41 @@ export class Basket{
     return Basket._instance;
   }
 
-  public static addToBasket(basketitem : IBasketItem){
+  public addToBasketSingle(basketitem : IItem, quantity: number){
 
+    var items : IBasketItem[] = this.BasketList.filter(item => item.item.id == basketitem.id);
+    
+    if (items === undefined || items.length == 0) {
+      var newBasketItem: IBasketItem = {item: basketitem, quantity: quantity} ;
+      this.BasketList.push(newBasketItem);
+    }
+    else{
+      this.BasketList.forEach(item => {
+        if(item.item.id == basketitem.id){
+          item.quantity += quantity;
+        }
+      });
+    }
   }
 
+  public minusToBasketSingle(basketitem : IItem, quantity: number){
+
+    var items : IBasketItem[] = this.BasketList.filter(item => item.item.id == basketitem.id);
+    
+    if (items === undefined || items.length == 0) {
+      console.log("item not found");
+    }
+    else{
+      this.BasketList.forEach(item => {
+        if(item.item.id == basketitem.id){
+          if(item.quantity == 1){
+            this.BasketList = this.BasketList.filter(e => e != item)
+          }
+          else{
+            item.quantity -= quantity;
+          }       
+        }
+      });
+    }
+  }
 }

@@ -4,6 +4,7 @@ import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 import { CategoriesService } from 'services/categories/categories-service';
 import { OrdersService } from 'services/orders/orders-service';
 import { ItemService } from 'services/items/item-service';
+import { Basket } from 'pages/basket/basket';
 
 @autoinject
 export class ItemListCustomElement {
@@ -18,6 +19,8 @@ export class ItemListCustomElement {
   @bindable
   public items: IItem[] = [];
   public selectedId: ICategoryId;
+
+  public basket: Basket = Basket.getInstance();
 
   public async created(){
     //this.items = await this.itemService.getItems();
@@ -40,5 +43,20 @@ export class ItemListCustomElement {
   select(category) {
     this.selectedId = category.id;
     return true;
+  }
+
+  addButtonClick(item: IItem){
+      this.basket.addToBasketSingle(item, 1);
+      console.log(this.basket.BasketList);
+  }
+
+  minusButtonClick(item: IItem){
+    this.basket.minusToBasketSingle(item, 1);
+    console.log(this.basket.BasketList);
+  }
+
+  quantityUpdated() {
+    
+
   }
 }

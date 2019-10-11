@@ -27,11 +27,6 @@ interface IItemId {
 }
 
 interface IBasketItem {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-  validUntil: string;
-  categories: ICategoryItem[];
+  item: IItem;
   quantity: number;
 }

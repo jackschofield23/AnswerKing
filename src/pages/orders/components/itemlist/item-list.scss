@@ -19,3 +19,21 @@ li.list-group-item {
   font-size: 25px;
   text-decoration: solid;
 }
+
+.container {
+  display: flex;
+}
+
+.inner-content {
+  margin: auto;
+  display: flex;
+}
+
+.middle-content {
+  flex: 0 0 85%;
+}
+.button {
+  float: right;
+ 
+  vertical-align: middle;
+}

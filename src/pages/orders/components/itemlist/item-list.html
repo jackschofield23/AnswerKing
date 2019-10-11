@@ -4,9 +4,23 @@
     <div class="item-list">
       <ul class="list-group">
         <li repeat.for="item of items" class="list-group-item" >
-            <a click.delegate="$parent.select(category)">
-                <h4 class="itemtitle">${item.title}</h4>
-                <p>${item.description}</p>
+            <a >
+              
+              <div class="container">
+                  <div class="middle-content" click.delegate="$parent.addButtonClick(item)">
+                      <h4 class="itemtitle">${item.title}</h4>
+                      <p >${item.description}</p>
+                  </div>
+          
+                  <div class="inner-content">
+           
+                   <button style="display: inline-block;" click.delegate="$parent.minusButtonClick(item)">-</button>
+                    <input style="display: inline-block; width: 50px"></input>
+                    <button style="display: inline-block;" click.delegate="$parent.addButtonClick(item)">+</button>
+                  </div>  
+              </div>
+          
+  
             </a>
        
         </li>
