@@ -56,6 +56,8 @@ export class ItemListCustomElement {
 
       const displayItem = this.displayitems.find(i => i.item.id === item.id);
       displayItem.quantity += 1;
+
+      this.events.publish('basketadded');
   }
 
   minusButtonClick(item: IItem){
@@ -66,6 +68,7 @@ export class ItemListCustomElement {
     
     if(displayItem.quantity > 0){
       displayItem.quantity -= 1;
+      this.events.publish('basketremoved');
     }
 
   }

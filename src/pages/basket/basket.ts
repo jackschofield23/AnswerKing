@@ -1,12 +1,13 @@
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { isBigIntLiteral } from "@babel/types";
-import { bindable } from 'aurelia-framework';
+import { bindable, observable } from 'aurelia-framework';
 
 
 export class Basket {
 
   private static _instance: Basket;
 
+    @observable
     public BasketList: IBasketItem[] = [];
 
   private constructor(){}
