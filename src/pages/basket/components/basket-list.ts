@@ -15,9 +15,13 @@ export class BasketListCustomElement {
     
   }
 
-  public basket: Basket = Basket.getInstance();
+  @bindable
+  public basketlist: IBasketItem[] = [];
+ 
 
   private subscriptions: Subscription[] = [];
+
+
 
 
 

@@ -1,0 +1,32 @@
+.basket-list {
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 100px;
+}
+
+
+li.list-group-item {
+  list-style: none;
+  border: 1px solid #ddd;
+  text-align: center;
+  text-decoration: solid;
+  padding: 10px;
+}
+
+.baskettitle {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+li.list-group-item > a {
+  text-decoration: none;
+}
+
+li.list-group-item.active > a {
+  color: white;
+}
+
+li.list-group-item.active {
+  color: blue;
+  background-color: #2d98fc;
+}

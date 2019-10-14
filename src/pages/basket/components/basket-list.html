@@ -1,7 +1,12 @@
 <template>
+    <require from="./basket-list.scss"></require>
+    
     <div class="basket-list">
       <ul class="list-group">
-        <li repeat.for="basketitem of basketitems" class="list-group-item"
+        <li repeat.for="item of basketlist" class="list-group-item">
+            <h4 class="baskettitle">${item.item.title}</h4>
+        </li>
+     
       </ul>
     </div>
     
