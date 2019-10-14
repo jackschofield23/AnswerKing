@@ -21,6 +21,12 @@ export class App {
         moduleId: PLATFORM.moduleName('pages/welcome/welcome-layout'),
       },
       {
+        route: 'login',
+        name: 'login',
+        title: 'login',
+        moduleId: PLATFORM.moduleName('pages/login/layout/login-layout'),
+      },
+      {
         route: 'orders',
         name: 'order',
         title: 'Order',
