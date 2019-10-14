@@ -13,6 +13,17 @@ export class LoginLayout {
     private itemService: ItemService
   ) {}
 
+  
+  @bindable
+  public password: string;
+  @bindable
+  public username: string;
+  
+  private correctpassword: string = "testpass";
+  private correctusername: string = "testuser";
+
+
+  
 
 
 }
