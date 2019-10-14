@@ -1,4 +1,4 @@
-import { autoinject, bindable } from 'aurelia-framework';
+import { autoinject, bindable, observable } from 'aurelia-framework';
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 
 import { CategoriesService } from 'services/categories/categories-service';
@@ -17,10 +17,15 @@ export class ItemListCustomElement {
 
   private subscriptions: Subscription[] = [];
   @bindable
-  public items: IItem[] = [];
+  @observable public items: IItem[] = [];
+  
+  @observable
+  public displayitems: IBasketItem[] = [];
   public selectedId: ICategoryId;
 
   public basket: Basket = Basket.getInstance();
+  @bindable
+  public basketlist: IBasketItem[] = [];
 
   public async created(){
     //this.items = await this.itemService.getItems();
@@ -48,11 +53,35 @@ export class ItemListCustomElement {
   addButtonClick(item: IItem){
       this.basket.addToBasketSingle(item, 1);
       console.log(this.basket.BasketList);
+
+      const displayItem = this.displayitems.find(i => i.item.id === item.id);
+      displayItem.quantity += 1;
   }
 
   minusButtonClick(item: IItem){
     this.basket.minusToBasketSingle(item, 1);
     console.log(this.basket.BasketList);
+
+    const displayItem = this.displayitems.find(i => i.item.id === item.id);
+    
+    if(displayItem.quantity > 0){
+      displayItem.quantity -= 1;
+    }
+
+  }
+
+  itemsChanged(){
+    this.displayitems = [];
+    this.basketlist = this.basket.BasketList;
+    this.items.forEach(item => {
+      const tempbasketlist: IBasketItem[] = this.basketlist.filter(e => e.item.id == item.id);
+      if(tempbasketlist.length == 1){
+        this.displayitems.push({item: item, quantity: tempbasketlist[0].quantity});
+      }
+      else{
+        this.displayitems.push({item: item, quantity: 0 });
+      }  
+    });
   }
 
   quantityUpdated() {

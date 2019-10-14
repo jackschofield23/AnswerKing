@@ -3,20 +3,20 @@
   
     <div class="item-list">
       <ul class="list-group">
-        <li repeat.for="item of items" class="list-group-item" >
+        <li repeat.for="item of displayitems"  class="list-group-item" >
             <a >
               
               <div class="container">
-                  <div class="middle-content" click.delegate="$parent.addButtonClick(item)">
-                      <h4 class="itemtitle">${item.title}</h4>
-                      <p >${item.description}</p>
+                  <div class="middle-content" click.delegate="$parent.addButtonClick(item.item)">
+                      <h4 class="itemtitle">${item.item.title}</h4>
+                      <p >${item.item.description}</p>
                   </div>
           
                   <div class="inner-content">
            
-                   <button style="display: inline-block;" click.delegate="$parent.minusButtonClick(item)">-</button>
-                    <input style="display: inline-block; width: 50px"></input>
-                    <button style="display: inline-block;" click.delegate="$parent.addButtonClick(item)">+</button>
+                   <button style="display: inline-block;" click.delegate="$parent.minusButtonClick(item.item)">-</button>
+                    <h4 style="display: inline-block; padding: 5px " class="itemtitle">${item.quantity}</h4>
+                    <button style="display: inline-block;" click.delegate="$parent.addButtonClick(item.item)">+</button>
                   </div>  
               </div>
           
