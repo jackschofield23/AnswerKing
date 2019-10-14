@@ -1,6 +1,9 @@
 import { autoinject, PLATFORM } from 'aurelia-framework';
 import { RouterConfiguration } from 'aurelia-router';
 
+//require('bootstrap/dist/css/bootstrap.min.css');
+//require('bootstrap');
+
 @autoinject
 export class App {
   public configureRouter(config: RouterConfiguration) {

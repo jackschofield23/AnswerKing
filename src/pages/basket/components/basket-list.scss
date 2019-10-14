@@ -1,5 +1,5 @@
 .basket-list {
-  overflow-y: auto;
+ 
   border: 1px solid #ddd;
   padding: 100px;
 }
@@ -15,7 +15,23 @@ li.list-group-item {
 
 .baskettitle {
   font-size: 30px;
-  font-weight: bold;
+  text-decoration: solid;
+}
+.container {
+  display: flex;
+}
+
+.quantity {
+  float: right;
+  font-size: 30px;
+}
+
+.inner-content {
+  margin: auto;
+  display: flex;
+}
+.middle-content {
+  flex: 0 0 85%;
 }
 
 li.list-group-item > a {

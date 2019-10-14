@@ -4,7 +4,15 @@
     <div class="basket-list">
       <ul class="list-group">
         <li repeat.for="item of basketlist" class="list-group-item">
-            <h4 class="baskettitle">${item.item.title}</h4>
+          <div class="container">
+              <div class="middle-content">
+                  <h4 class="baskettitle">${item.item.title}</h4>
+                          </div>
+              <div class="inner-content">
+               <h4 class="quantity" style="display: inline-block">${item.quantity}</h4>
+              </div>
+     
+          </div>       
         </li>
      
       </ul>

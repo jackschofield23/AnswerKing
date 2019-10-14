@@ -10,8 +10,11 @@
     "aurelia-fetch-client": "^1.8.2",
     "aurelia-router": "^1.7.1",
     "aurelia-validation": "^1.4.0",
+    "bootstrap": "^4.3.1",
     "bulma": "^0.7.5",
-    "moment": "^2.24.0"
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
+    "popper.js": "^1.15.0"
   },
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^4.1.0",

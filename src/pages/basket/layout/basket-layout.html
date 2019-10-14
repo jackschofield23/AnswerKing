@@ -1,11 +1,16 @@
 <template>
     <require from="../components/basket-list"></require>
+    <require from="./basket-layout.scss"></require>
 
     <div class="basketdiv">
         <basket-list basketlist.two-way="basketlist">
 
         </basket-list>
 
+    </div>
+
+    <div>
+      <button class="button is-large" style="float: right; margin-right: 50px; margin-top: 50px;">Place Order</button>
     </div>
 
 </template>
