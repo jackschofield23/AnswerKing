@@ -27,6 +27,12 @@ export class App {
         moduleId: PLATFORM.moduleName('pages/login/layout/login-layout'),
       },
       {
+        route: 'admin',
+        name: 'admin',
+        title: 'Admin',
+        moduleId: PLATFORM.moduleName('pages/admin/layout/admin-layout'),
+      },
+      {
         route: 'orders',
         name: 'order',
         title: 'Order',

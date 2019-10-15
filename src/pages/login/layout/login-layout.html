@@ -9,7 +9,7 @@
                   <div class="field">
                     <label for="" class="label">Email</label>
                     <div class="control has-icons-left">
-                      <input type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required>
+                      <input type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required value.two-way="username">
                       <span class="icon is-small is-left">
                         <i class="fa fa-envelope"></i>
                       </span>
@@ -18,20 +18,15 @@
                   <div class="field">
                     <label for="" class="label">Password</label>
                     <div class="control has-icons-left">
-                      <input type="password" placeholder="*******" class="input" required>
+                      <input type="password" placeholder="*******" class="input ${passwordvalid ? '' : 'is-danger'}" required value.two-way="password">
                       <span class="icon is-small is-left">
                         <i class="fa fa-lock"></i>
                       </span>
                     </div>
                   </div>
+  
                   <div class="field">
-                    <label for="" class="checkbox">
-                      <input type="checkbox">
-                     Remember me
-                    </label>
-                  </div>
-                  <div class="field">
-                    <button class="button is-success">
+                    <button class="button is-success" click.delegate="loginClicked()">
                       Login
                     </button>
                   </div>
