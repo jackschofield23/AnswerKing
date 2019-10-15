@@ -10,6 +10,8 @@ export class Basket {
   @observable
   public BasketList: IBasketItem[] = [];
 
+  public orderId: string;
+
   private constructor() { }
 
   // public static get Instance()
