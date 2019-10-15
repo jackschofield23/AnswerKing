@@ -50,21 +50,21 @@ export class ItemListCustomElement {
     return true;
   }
 
-  addButtonClick(item: IItem){
-      this.basket.addToBasketSingle(item, 1);
+  addButtonClick(item: IBasketItem){
+      this.basket.addToBasketSingle(item.item, 1);
       console.log(this.basket.BasketList);
 
-      const displayItem = this.displayitems.find(i => i.item.id === item.id);
+      const displayItem = this.displayitems.find(i => i.item.id === item.item.id);
       displayItem.quantity += 1;
 
       this.events.publish('basketadded');
   }
 
-  minusButtonClick(item: IItem){
-    this.basket.minusToBasketSingle(item, 1);
+  minusButtonClick(item: IBasketItem){
+    this.basket.minusToBasketSingle(item.item, 1);
     console.log(this.basket.BasketList);
 
-    const displayItem = this.displayitems.find(i => i.item.id === item.id);
+    const displayItem = this.displayitems.find(i => i.item.id === item.item.id);
     
     if(displayItem.quantity > 0){
       displayItem.quantity -= 1;

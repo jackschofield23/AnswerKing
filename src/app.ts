@@ -40,6 +40,12 @@ export class App {
         moduleId: PLATFORM.moduleName('pages/orders/layout/orders-layout'),
       },
       {
+        route: 'orderdetail/:id',
+        name: 'orderdetail',
+        title: 'Order',
+        moduleId: PLATFORM.moduleName('pages/orders/layout/orders-layout'),
+      },
+      {
         route: 'basket',
         name: 'basket',
         title: 'Basket',

@@ -48,32 +48,32 @@ export class BasketListCustomElement {
   }
 
 
-  addButtonClick(item: IItem) {
-    this.basket.addToBasketSingle(item, 1);
+  addButtonClick(item: IBasketItem) {
+    this.basket.addToBasketSingle(item.item, 1);
     console.log(this.basket.BasketList);
 
-    const displayItem = this.basketlist.find(i => i.item.id === item.id);
+    const displayItem = this.basketlist.find(i => i.item.id === item.item.id);
     //displayItem.quantity += 1;
 
-    this.events.publish('basketadded');
+    this.events.publish('basketadded', item);
   }
 
-  minusButtonClick(item: IItem) {
+  minusButtonClick(item: IBasketItem) {
 
 
-    const displayItem = this.basketlist.find(i => i.item.id === item.id);
+    const displayItem = this.basketlist.find(i => i.item.id === item.item.id);
 
     if (displayItem.quantity > 1) {
-      this.basket.minusToBasketSingle(item, 1);
+      this.basket.minusToBasketSingle(item.item, 1);
       console.log(this.basket.BasketList);
-      this.events.publish('basketremoved');
+      this.events.publish('basketremoved', item);
     }
 
   }
 
   deleteClick(item: IBasketItem){
     this.basket.deleteFromBasket(item.item);
-    this.events.publish('basketremoved', item.quantity);
+    this.events.publish('basketdeleted', item);
     this.basketlist = this.basketlist.filter(e => e != item);   
   }
 
