@@ -1,5 +1,8 @@
 <template>
     <require from="./item-list.scss"></require>
+    <require from="../../../../resources/value-converters/currency-format"></require>
+  
+
   
     <div class="item-list">
       <ul class="list-group">
@@ -13,7 +16,7 @@
                   </div>
           
                   <div class="inner-content">
-           
+                    <h4 class="itemtitle" style="display: inline-block;  padding: 5px">£${item.item.price | currencyFormat} </h4>
                    <button style="display: inline-block;" click.delegate="$parent.minusButtonClick(item.item)">-</button>
                     <h4 style="display: inline-block; padding: 5px " class="itemtitle">${item.quantity}</h4>
                     <button style="display: inline-block;" click.delegate="$parent.addButtonClick(item.item)">+</button>

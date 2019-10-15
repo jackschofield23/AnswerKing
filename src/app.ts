@@ -3,6 +3,7 @@ import { RouterConfiguration } from 'aurelia-router';
 
 //require('bootstrap/dist/css/bootstrap.min.css');
 //require('bootstrap');
+var numeral = require('numeral');
 
 @autoinject
 export class App {
