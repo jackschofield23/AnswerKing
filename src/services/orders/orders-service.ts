@@ -5,20 +5,22 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 export class OrdersService {
   constructor(private http: HttpClient) {}
 
-  public async createOrder(): Promise<string> {
-    const body: IOrderUpdate = {
-      lineItems: [],
+  public async createOrder(item: IBasketItem): Promise<string> {
+    const itemidarray: string[] = [];
+    itemidarray.push(item.item.id);
+    const body: IOrderCreate = {
+      items: itemidarray 
     };
 
-    const response = await this.http.post('orders', json(body));
+    const response = await this.http.post('https://answer-king-java-jack.herokuapp.com/order', json(body));
 
     if (!response.ok) {
       return null;
     }
-
     // We need to await the deserialisation
     // of the response body.
     const order: IOrder = await response.json();
+
     return order.id;
   }
 

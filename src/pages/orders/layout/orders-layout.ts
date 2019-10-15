@@ -47,11 +47,6 @@ export class HomeLayout {
       this.selectCategory(firstCategory);
     }
 
-
-
-    //console.log(this.categories);
-    //console.log(this.items);
-    //console.log(this.order);
     console.log(this.basket.BasketList);
 
   }

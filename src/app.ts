@@ -40,7 +40,7 @@ export class App {
         moduleId: PLATFORM.moduleName('pages/orders/layout/orders-layout'),
       },
       {
-        route: 'orderdetail/:id',
+        route: 'orders/:id',
         name: 'orderdetail',
         title: 'Order',
         moduleId: PLATFORM.moduleName('pages/orders/layout/orders-layout'),

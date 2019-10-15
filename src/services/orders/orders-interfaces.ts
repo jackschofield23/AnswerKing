@@ -35,6 +35,14 @@ interface IOrderUpdate {
   lineItems: ILineItemUpdate[];
 }
 
+interface IOrderCreate {
+  items: string[];
+}
+
+interface IItemId {
+  id: string;
+}
+
 interface ILineItemUpdate {
   item: IItemId;
   quantity: number;

@@ -5,20 +5,22 @@ import { CategoriesService } from 'services/categories/categories-service';
 import { OrdersService } from 'services/orders/orders-service';
 import { ItemService } from 'services/items/item-service';
 import { Basket } from 'pages/basket/basket';
+import { AppRouter } from 'aurelia-router';
 
 @autoinject
 export class ItemListCustomElement {
-  constructor(private events: EventAggregator,     
+  constructor(private events: EventAggregator,
     private orderService: OrdersService,
     private categoriesService: CategoriesService,
-    private itemService: ItemService) {
-    
+    private itemService: ItemService,
+    private appRouter: AppRouter) {
+
   }
 
   private subscriptions: Subscription[] = [];
   @bindable
- public items: IItem[] = [];
-  
+  public items: IItem[] = [];
+
   @observable
   public displayitems: IBasketItem[] = [];
   public selectedId: ICategoryId;
@@ -27,7 +29,7 @@ export class ItemListCustomElement {
   @bindable
   public basketlist: IBasketItem[] = [];
 
-  public async created(){
+  public async created() {
     //this.items = await this.itemService.getItems();
   }
 
@@ -50,45 +52,55 @@ export class ItemListCustomElement {
     return true;
   }
 
-  addButtonClick(item: IBasketItem){
-      this.basket.addToBasketSingle(item.item, 1);
-      console.log(this.basket.BasketList);
+  addButtonClick(item: IBasketItem) {
 
-      const displayItem = this.displayitems.find(i => i.item.id === item.item.id);
-      displayItem.quantity += 1;
+    if (this.basket.BasketList.length < 1) {
+      this.orderService.createOrder(item).then(orderid => {
+        this.appRouter.navigateToRoute('orderdetail' , { id: orderid });
+      });
+    }
 
-      this.events.publish('basketadded');
+
+    
+    this.basket.addToBasketSingle(item.item, 1);
+    console.log(this.basket.BasketList);
+
+    const displayItem = this.displayitems.find(i => i.item.id === item.item.id);
+    displayItem.quantity += 1;
+
+    this.events.publish('basketadded');
+  
   }
 
-  minusButtonClick(item: IBasketItem){
+  minusButtonClick(item: IBasketItem) {
     this.basket.minusToBasketSingle(item.item, 1);
     console.log(this.basket.BasketList);
 
     const displayItem = this.displayitems.find(i => i.item.id === item.item.id);
-    
-    if(displayItem.quantity > 0){
+
+    if (displayItem.quantity > 0) {
       displayItem.quantity -= 1;
       this.events.publish('basketremoved');
     }
 
   }
 
-  itemsChanged(){
+  itemsChanged() {
     this.displayitems = [];
     this.basketlist = this.basket.BasketList;
     this.items.forEach(item => {
       const tempbasketlist: IBasketItem[] = this.basketlist.filter(e => e.item.id == item.id);
-      if(tempbasketlist.length == 1){
-        this.displayitems.push({item: item, quantity: tempbasketlist[0].quantity});
+      if (tempbasketlist.length == 1) {
+        this.displayitems.push({ item: item, quantity: tempbasketlist[0].quantity });
       }
-      else{
-        this.displayitems.push({item: item, quantity: 0 });
-      }  
+      else {
+        this.displayitems.push({ item: item, quantity: 0 });
+      }
     });
   }
 
   quantityUpdated() {
-    
+
 
   }
 }
