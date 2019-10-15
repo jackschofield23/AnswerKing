@@ -30,8 +30,13 @@ export class MainNavCustomElement {
     );
     this.subscriptions.push(
       this.events.subscribe('basketremoved', payload =>{
-        this.basketquantity -= 1;
-        console.log(this.basketquantity);
+        if(payload != undefined){
+          this.basketquantity -= payload;
+        }
+        else{
+          this.basketquantity -= 1;
+        }
+        
       })
     );
    

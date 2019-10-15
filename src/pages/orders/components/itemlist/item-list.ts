@@ -17,7 +17,7 @@ export class ItemListCustomElement {
 
   private subscriptions: Subscription[] = [];
   @bindable
-  @observable public items: IItem[] = [];
+ public items: IItem[] = [];
   
   @observable
   public displayitems: IBasketItem[] = [];
