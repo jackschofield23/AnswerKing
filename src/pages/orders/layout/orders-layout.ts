@@ -27,8 +27,9 @@ export class HomeLayout {
   // since this class is handled by the Router,
   // it has an activate method which receives the
   // route parameters.
-  public activate(params) {
+  public async activate(params) {
     this.orderId = params.id;
+
   }
 
   public async attached() {
@@ -37,9 +38,16 @@ export class HomeLayout {
     // You should not continue with the calls to other APIs
     // if the order with the given id does not exist.
 
-    this.order = await this.orderService.getOrderByID(this.orderId);
     this.categories = await this.categoriesService.getCategories();
     this.allitems = await this.itemService.getItems();
+
+    if(this.orderId){
+      await this.orderService.getOrderByID(this.orderId)
+      .then(order => {
+        console.log(order);
+        this.basket.retrieveFromDB(order, this.allitems);
+      });
+    }
 
     const firstCategory : string = '0';
 

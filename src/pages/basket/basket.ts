@@ -65,6 +65,24 @@ export class Basket {
     }
   }
 
+  public retrieveFromDB(order: IOrder, allitems: IItem[]){
+    this.orderId = order.id;
+    order.items.forEach(inputitem => { 
+      var items: IBasketItem[] = this.BasketList.filter(item => item.item.id == inputitem.id);
+      
+      if (items === undefined || items.length == 0) {
+        var filtereditem : IItem[] = allitems.filter(item => item.id == inputitem.id);
+        if(filtereditem.length == 1){
+          var newBasketItem: IBasketItem = { item: filtereditem[0], quantity: 1 };
+          this.BasketList.push(newBasketItem);
+        }
+      }
+      else if (items.length == 1){ 
+        items[0].quantity += 1;
+      }
+    });
+  }
+
   public deleteFromBasket(basketitem: IItem) {
     var items: IBasketItem[] = this.BasketList.filter(item => item.item.id == basketitem.id);
 
