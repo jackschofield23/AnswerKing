@@ -57,8 +57,9 @@ export class HomeLayout {
       this.selectCategory(firstCategory);
     }
 
-    this.events.publish('basketset');
-
+    this.events.publish('basketset');  
+    this.events.publish('orderid', this.orderId);
+    
   }
 
   valueChanged(newValue) {

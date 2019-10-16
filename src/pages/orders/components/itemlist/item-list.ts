@@ -114,8 +114,4 @@ export class ItemListCustomElement {
     });
   }
 
-  quantityUpdated() {
-
-
-  }
 }

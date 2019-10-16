@@ -18,12 +18,33 @@ export class BasketLayout {
   public basket: Basket = Basket.getInstance();
 
   
-  public basketlist: IBasketItem[] = this.basket.BasketList;
+  public basketlist: IBasketItem[] = this.basket.BasketList;  
+  public allitems: IItem[] = [];
 
   @observable
   public baskettotal: number = 0;
 
-  attached(){
+  private orderId: string;
+
+  public async activate(params) {
+    this.orderId = params.id;
+
+  }
+
+  public async attached(){
+
+    if(this.orderId){
+      this.allitems = await this.itemService.getItems();
+      await this.orderService.getOrderByID(this.orderId)
+      .then(order => {
+        console.log(order);
+        this.basket.retrieveFromDB(order, this.allitems);
+      });
+    }
+    
+    this.events.publish('basketset');  
+    this.events.publish('orderid', this.orderId);
+
     this.basketlist.forEach(item => {
       this.baskettotal += (item.item.price * item.quantity);
     });
@@ -41,5 +62,9 @@ export class BasketLayout {
     });
 
   }
+
+  
+
+
 
 }
