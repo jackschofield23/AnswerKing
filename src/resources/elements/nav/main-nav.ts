@@ -1,4 +1,4 @@
-import { Basket } from './../../../pages/basket/basket';
+import { Basket } from '../../../pages/basket/basket';
 import { autoinject, observable, bindable } from 'aurelia-framework';
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 
@@ -20,6 +20,8 @@ export class MainNavCustomElement {
   @observable
   public basketquantity: number = 0;
 
+  public basket: Basket = Basket.getInstance();
+
 
   public attached() {
     this.subscriptions.push(
@@ -35,13 +37,28 @@ export class MainNavCustomElement {
     this.subscriptions.push(
       this.events.subscribe('basketdeleted', payload =>{
           this.basketquantity -= payload.quantity;        
-      })
+      })      
     );
+    this.subscriptions.push(
+      this.events.subscribe('basketset', payload =>{
+        this.populateQuantity();     
+      })      
+    );
+
+
    
   }
 
   public detached() {
     this.subscriptions.forEach(s => s.dispose());
+  }
+
+  public populateQuantity() {
+    const basketlist = this.basket.BasketList;
+
+    basketlist.forEach(item => {
+      this.basketquantity += item.quantity;
+    });
   }
 
 }

@@ -4,13 +4,15 @@ import { autoinject, observable } from 'aurelia-framework';
 import { CategoriesService } from 'services/categories/categories-service';
 import { OrdersService } from 'services/orders/orders-service';
 import { ItemService } from 'services/items/item-service';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 @autoinject
 export class HomeLayout {
   constructor(
     private orderService: OrdersService,
     private categoriesService: CategoriesService,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private events: EventAggregator
   ) {}
 
   public categories: ICategory[] = [];
@@ -55,7 +57,7 @@ export class HomeLayout {
       this.selectCategory(firstCategory);
     }
 
-    console.log(this.basket.BasketList);
+    this.events.publish('basketset');
 
   }
 
