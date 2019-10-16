@@ -41,7 +41,7 @@ export class BasketLayout {
         this.basket.retrieveFromDB(order, this.allitems);
       });
     }
-    
+
     this.events.publish('basketset');  
     this.events.publish('orderid', this.orderId);
 
@@ -61,6 +61,13 @@ export class BasketLayout {
       this.baskettotal -= (payload.item.price * payload.quantity);
     });
 
+  }
+
+
+  public placeorderclick(){
+    if(this.basket.BasketList.length >= 1){
+      
+    }
   }
 
   

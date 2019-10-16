@@ -1,11 +1,11 @@
 <template>
     <require from="./basket-list.scss"></require>
-    <require from="../../../resources/value-converters/currency-format"></require>
+    <require from="../../../../resources/value-converters/currency-format"></require>
   
-    
-    <div class="basket-list">
+   
+    <div class="box" style="margin-top: 5%; margin-left: 5%; margin-right: 5%; margin-bottom: 1%">
       <ul class="list-group">
-        <li repeat.for="item of basketlist" class="list-group-item">
+        <li repeat.for="item of basketlist" class="box">
           <div class="container">
               <div class="middle-content">
                   <h4 class="baskettitle">${item.item.title}</h4>
@@ -28,5 +28,6 @@
      
       </ul>
     </div>
+   
     
 </template>

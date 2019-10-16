@@ -4,7 +4,7 @@ import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 import { CategoriesService } from 'services/categories/categories-service';
 import { OrdersService } from 'services/orders/orders-service';
 import { ItemService } from 'services/items/item-service';
-import { Basket } from '../basket';
+import { Basket } from '../../basket';
 import { AppRouter } from 'aurelia-router';
 
 @autoinject

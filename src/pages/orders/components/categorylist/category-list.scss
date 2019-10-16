@@ -22,11 +22,11 @@ li.list-group-item > a {
   text-decoration: none;
 }
 
-li.list-group-item.active > a {
+li.box.active > a {
   color: white;
 }
 
-li.list-group-item.active {
+li.box.active {
   color: blue;
   background-color: #2d98fc;
 }

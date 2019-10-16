@@ -1,5 +1,5 @@
 <template>
-    <require from="../components/basket-list"></require>
+    <require from="../components/basket-list/basket-list"></require>
     <require from="./basket-layout.scss"></require>
     <require from="../../../resources/value-converters/currency-format"></require>
 
@@ -10,13 +10,15 @@
 
     </div>
 
-    <div class="container">
-      <h4 class="title" style="padding: 5px">£${baskettotal | currencyFormat}</h4>
+    <div class="box" style=" margin-left: 5%; margin-right: 5%; ">
+         <p class="title" style="padding: 5px; ">Total   
+          <span class="title" style=" float:right;">£${baskettotal | currencyFormat}</span>
+         </p>
 
     </div>
 
-    <div>
-      <button class="button is-large" style="float: right; margin-right: 50px; margin-top: 10px;">Place Order</button>
+    <div class="box" style=" margin-left: 5%; margin-right: 5%; display: flex; justify-content: flex-end">
+      <button class="button is-large is-success" style="padding: 5px;" click.delegate="placeorderclick()">Place Order</button>
     </div>
 
 </template>
