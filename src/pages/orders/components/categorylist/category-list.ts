@@ -18,7 +18,7 @@ export class CategoryListCustomElement {
   public categories: ICategory[] = [];
 
   @bindable
-  public selectedid: ICategoryId;
+  public selectedid: string;
 
   public async created() {
   }
@@ -35,7 +35,12 @@ export class CategoryListCustomElement {
   }
 
   select(category) {
-    this.selectedid = category.id;
-    return true;
+    if(this.selectedid == category.id){
+      
+      this.selectedid = "0";
+    }
+    else {
+      this.selectedid = category.id;
+    }
   }
 }

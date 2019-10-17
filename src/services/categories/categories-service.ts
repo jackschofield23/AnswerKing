@@ -6,7 +6,7 @@ export class CategoriesService {
   constructor(private http: HttpClient) {}
 
   public async getCategories(): Promise<ICategory[]> {
-    const response = await this.http.get('https://answer-king-java-jack.herokuapp.com/category');
+    const response = await this.http.get('/category');
 
     return response.ok ? response.json() : [];
   }

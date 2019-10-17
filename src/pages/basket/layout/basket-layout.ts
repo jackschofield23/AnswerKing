@@ -5,6 +5,7 @@ import { OrdersService } from 'services/orders/orders-service';
 import { ItemService } from 'services/items/item-service';
 import { Basket } from '../basket';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { AppRouter } from 'aurelia-router';
 
 @autoinject
 export class BasketLayout {
@@ -12,7 +13,8 @@ export class BasketLayout {
     private events: EventAggregator,  
     private orderService: OrdersService,
     private categoriesService: CategoriesService,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private appRouter: AppRouter
   ) {}
 
   public basket: Basket = Basket.getInstance();
@@ -37,7 +39,12 @@ export class BasketLayout {
       await this.orderService.getOrderByID(this.orderId)
       .then(order => {
         console.log(order);
-        this.basket.retrieveFromDB(order, this.allitems);
+        if(order == null){
+          this.appRouter.navigateToRoute('error404');
+        }
+        else{
+          this.basket.retrieveFromDB(order, this.allitems);
+        }   
       });
     }
 

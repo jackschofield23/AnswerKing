@@ -75,7 +75,7 @@ export class HomeLayout {
   }
 
   public selectCategory(id: string) {
-    if(id == '0'){
+    if(id == "0"){
       this.items = this.allitems;
     }
     else{

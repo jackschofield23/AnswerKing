@@ -23,7 +23,7 @@ export function configure(aurelia: Aurelia) {
     .feature(PLATFORM.moduleName('resources/index'));
 
   const http = new HttpClient().configure(config => {
-    config.withBaseUrl('http://localhost:5000/api/');
+    config.withBaseUrl('https://answer-king-java-jack.herokuapp.com');
   });
 
   aurelia.container.registerInstance(HttpClient, http);

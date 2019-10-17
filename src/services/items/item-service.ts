@@ -6,7 +6,7 @@ export class ItemService {
   constructor(private http: HttpClient) {}
 
   public async getItems(): Promise<IItem[]> {
-    const response = await this.http.get('https://answer-king-java-jack.herokuapp.com/item');
+    const response = await this.http.get('/item');
 
     // since the response we expect is a list,
     // we return an empty list for when the response

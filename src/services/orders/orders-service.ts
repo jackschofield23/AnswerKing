@@ -16,7 +16,7 @@ export class OrdersService {
       items: itemidarray
     };
 
-    const response = await this.http.post('https://answer-king-java-jack.herokuapp.com/order', json(body));
+    const response = await this.http.post('/order', json(body));
 
     if (!response.ok) {
       return null;
@@ -44,7 +44,7 @@ export class OrdersService {
       items: itemidarray
     };
 
-    const response = await this.http.put(`https://answer-king-java-jack.herokuapp.com/order/${orderid}`, json(body));
+    const response = await this.http.put(`/order/${orderid}`, json(body));
 
     if (!response.ok) {
       return null;
@@ -63,7 +63,7 @@ export class OrdersService {
   }
 
   public async getOrderByID(orderId: string): Promise<IOrder> {
-    const response = await this.http.get(`https://answer-king-java-jack.herokuapp.com/order/${orderId}`);
+    const response = await this.http.get(`/order/${orderId}`);
 
     if (!response.ok) {
       return null;
@@ -72,7 +72,7 @@ export class OrdersService {
   }
 
   public async getOrders(): Promise<IOrder[]> {
-    const response = await this.http.get('https://answer-king-java-jack.herokuapp.com/order');
+    const response = await this.http.get('/order');
 
     return response.ok ? response.json() : [];
   }
