@@ -26,9 +26,16 @@ export class MainNavCustomElement {
 
   public basket: Basket = Basket.getInstance();
 
+  public activate(){
+
+  }
 
   public attached() {
+
     this.subscriptions.push(
+      this.events.subscribe('orderid', payload => {        
+         this.setOrderId(payload);
+    }),
       this.events.subscribe('basketadded', payload => {
         this.basketquantity += 1;
       }),
@@ -40,14 +47,13 @@ export class MainNavCustomElement {
       }),
       this.events.subscribe('basketremoved', payload => {
         this.basketquantity -= 1;
-      }),
-      this.events.subscribe('orderid', orderid => {
-        if (orderid != undefined) {
-          this.orderid = orderid;
-        }
       })
+ 
     );
+  }
 
+  public setOrderId(payload){
+    this.orderid = payload;   
   }
 
   public detached() {

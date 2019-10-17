@@ -66,6 +66,7 @@ export class ItemListCustomElement {
       this.orderService.createOrder(item).then(orderid => {
         this.appRouter.navigateToRoute('orderdetail', { id: orderid });
         this.basket.orderId = orderid;
+        this.events.publish('orderid', orderid);
       });
     }
     else {

@@ -21,6 +21,13 @@ export class PaymentFormCustomElement {
   public displaycash: boolean = false;
   public displaycard: boolean = false;
 
+  public cashamountvalid: boolean = true;
+
+  @bindable
+  public carddetails: ICardDetails;
+  @bindable
+  public cashamount: number;
+
   private subscriptions: Subscription[] = [];
 
   public basket: Basket = Basket.getInstance();
@@ -39,11 +46,23 @@ export class PaymentFormCustomElement {
     if(this.selectedpayment){
       this.displaycard = false;
       this.displaycash = true;
+      this.events.publish('cash');
     }
     else if(!this.selectedpayment){
       this.displaycard = true;
       this.displaycash = false;
+      this.events.publish('card');
     }
   }
 
+  cashamountChanged(newvalue, oldvalue){
+    try{
+      var num = +this.cashamount;
+    }
+    catch{
+      this.cashamountvalid = false;
+    }
+
+    console.log(this.cashamount);
+  }
 }

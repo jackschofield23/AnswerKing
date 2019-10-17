@@ -11,3 +11,14 @@ interface IPaymentUpdate {
   orderId: string;
   amount: number;
 }
+
+interface ICardDetails {
+  name: string;
+  cardnumber: string;
+  expirydate: string;
+  CVV: string;
+}
+
+interface ICashDetails {
+  amount: number;
+}

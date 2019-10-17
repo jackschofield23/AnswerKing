@@ -47,6 +47,7 @@ export class HomeLayout {
     this.allitems = await this.itemService.getItems();
 
     if(this.orderId){
+      this.events.publish('orderid', this.orderId);
       await this.orderService.getOrderByID(this.orderId)
       .then(order => {
         console.log(order);
@@ -55,6 +56,8 @@ export class HomeLayout {
         }
         else{
           this.basket.retrieveFromDB(order, this.allitems);
+          this.events.publish('basketset');  
+         
         }       
       });
     }
@@ -65,8 +68,7 @@ export class HomeLayout {
       this.selectCategory(firstCategory);
     }
 
-    this.events.publish('basketset');  
-    this.events.publish('orderid', this.orderId);
+
     
   }
 
