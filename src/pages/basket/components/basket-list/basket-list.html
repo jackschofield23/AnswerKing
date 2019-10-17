@@ -5,23 +5,26 @@
 
   <div class="box" style="margin-top: 5%; margin-left: 5%; margin-right: 5%; margin-bottom: 1%">
     <ul class="list-group">
-      <li repeat.for="item of basketlist" class="box">
-        <div class="container">
-          <div class="middle-content">
-            <h4 class="baskettitle">${item.item.title}</h4>
+      <li repeat.for="item of basketlist" class="box" >
+        <div class="columns" style="display: flex;  flex-direction: row; justify-content: space-around; align-items: center">
+          <div class="column is-three-fifths">
+            <h4 class="text is-size-2">${item.item.title}</h4>
           </div>
-          <div class="inner-content">
-            <h4 class="itemtitle" style="display: inline-block;  padding: 5px">£${item.item.price * item.quantity |
-              currencyFormat} </h4>
-            <button class="button is-active is-link is-size-5" style="display: inline-block;"
+          <div class="column">
+              <h4 class="text is-size-4" style="padding: 5px">£${item.item.price * item.quantity |
+                  currencyFormat} </h4>
+          </div>
+          <div class="column">
+    
+            <button class="button is-active is-link is-size-5" 
               click.delegate="$parent.minusButtonClick(item)">-</button>
-            <h4 style="display: inline-block; padding: 5px " class="itemtitle">${item.quantity}</h4>
-            <button class="button is-active is-link is-size-5" style="display: inline-block;"
+            <h4 style="display: inline-block; padding: 5px " class="text is-size-4">${item.quantity}</h4>
+            <button class="button is-active is-link is-size-5" 
               click.delegate="$parent.addButtonClick(item)">+</button>
           </div>
-          <div class="inner-content is-pulled-right" style="margin-left: 5%">
-            <button class="delete is-medium " style="padding: 5px" click.delegate="deleteClick(item)"></button>
-          </div>
+    
+          <button class="delete is-large " style="padding: 10px; margin-left: 1%" click.delegate="deleteClick(item)"></button>
+     
         </div>
       </li>
     </ul>

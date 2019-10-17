@@ -10,6 +10,7 @@ import { Basket } from '../basket';
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { AppRouter } from 'aurelia-router';
 import { PaymentsService } from 'services/payments/payments-service';
+import { CardPrompt } from '../dialog/card-dialog';
 
 @autoinject
 export class BasketLayout {
@@ -88,16 +89,24 @@ export class BasketLayout {
     });
   }
 
-  private cardpayment(){
-    this.dialogService.open( {viewModel: ChangePrompt, model: 'Are you sure?' }).then(response => {
+  private async cardpayment(){
+    if(this.carddetails != undefined && this.carddetails.expirydate.length > 0 && this.carddetails.name.length > 0 && this.carddetails.cardnumber.length > 0 && this.carddetails.CVV.length > 0)
+    {
+      const paymentupdate : IPaymentUpdate = {orderId: this.basket.orderId, amount: this.baskettotal};
+      var response = await this.paymentsService.payOrder(paymentupdate);
+
+      if(response.complete){
+        this.dialogService.open( {viewModel: CardPrompt, model: `${response.change}`}).then(response => {
   
-      if (!response.wasCancelled) {
-         console.log('OK');
-      } else {
-         console.log('cancelled');
+          if (!response.wasCancelled) {
+             console.log('OK');
+          } else {
+             console.log('cancelled');
+          }
+          console.log(response);
+       });
       }
-      console.log(response);
-   });
+    }
   }
 
   private async cashpayment(){
@@ -105,7 +114,7 @@ export class BasketLayout {
       const paymentupdate : IPaymentUpdate = {orderId: this.basket.orderId, amount: this.cashamount};
       var response = await this.paymentsService.payOrder(paymentupdate);
 
-      if(response.change > 0){
+      if(response.change > 0 && response.complete){
         this.dialogService.open( {viewModel: ChangePrompt, model: `${response.change}`}).then(response => {
   
           if (!response.wasCancelled) {

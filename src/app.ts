@@ -53,6 +53,12 @@ export class App {
         moduleId: PLATFORM.moduleName('pages/orders/layout/orders-layout'),
       },
       {
+        route: 'ordercomplete',
+        name: 'ordercomplete',
+        title: 'Order Successful!',
+        moduleId: PLATFORM.moduleName('pages/ordercomplete/ordercomplete-layout'),
+      },
+      {
         route: 'basket/:id',
         name: 'basketid',
         title: 'Basket',

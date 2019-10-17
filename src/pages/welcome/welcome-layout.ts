@@ -6,16 +6,21 @@ import {
   AlertModal,
   IAlertModalOptions,
 } from 'resources/modals/alert/alert-modal';
+import { Basket } from 'pages/basket/basket';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 @autoinject
 export class WelcomeLayout {
   constructor(
     private appRouter: AppRouter,
     private dialogService: DialogService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private events: EventAggregator
   ) {}
 
   public executing: boolean = false;
+
+  public basket: Basket = Basket.getInstance();
 
   public async confirmStart() {
     const options: IAlertModalOptions = {
@@ -37,15 +42,9 @@ export class WelcomeLayout {
   }
 
   public async startOrder() {
-    this.executing = true;
-    //const orderId = await this.ordersService.createOrder();
-    this.executing = false;
-
-    // if (!orderId) {
-    //   // Let the user know that something has happened.
-    //   return;
-    // }
-
+ 
+    this.basket.BasketList = [];
+    this.events.publish('basketset'); 
     this.appRouter.navigateToRoute('order');
   }
 }
