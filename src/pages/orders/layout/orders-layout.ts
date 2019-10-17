@@ -5,6 +5,7 @@ import { CategoriesService } from 'services/categories/categories-service';
 import { OrdersService } from 'services/orders/orders-service';
 import { ItemService } from 'services/items/item-service';
 import { EventAggregator } from 'aurelia-event-aggregator';
+import { AppRouter } from 'aurelia-router';
 
 @autoinject
 export class HomeLayout {
@@ -12,7 +13,8 @@ export class HomeLayout {
     private orderService: OrdersService,
     private categoriesService: CategoriesService,
     private itemService: ItemService,
-    private events: EventAggregator
+    private events: EventAggregator,
+    private appRouter: AppRouter
   ) {}
 
   public categories: ICategory[] = [];
@@ -33,6 +35,7 @@ export class HomeLayout {
     this.orderId = params.id;
 
   }
+  
 
   public async attached() {
     // Retrieve the order from the API
@@ -47,7 +50,12 @@ export class HomeLayout {
       await this.orderService.getOrderByID(this.orderId)
       .then(order => {
         console.log(order);
-        this.basket.retrieveFromDB(order, this.allitems);
+        if(order == null){
+          this.appRouter.navigateToRoute('error404');
+        }
+        else{
+          this.basket.retrieveFromDB(order, this.allitems);
+        }       
       });
     }
 

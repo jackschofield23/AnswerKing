@@ -30,13 +30,9 @@ export class ItemListCustomElement {
   public basketlist: IBasketItem[] = [];
 
   public async created() {
-    //this.items = await this.itemService.getItems();
   }
 
   public attached() {
-    this.subscriptions.push(
-      this.events.subscribe('category:added', this.orderAdded)
-    );
   }
 
   public detached() {
@@ -53,7 +49,7 @@ export class ItemListCustomElement {
   }
 
   addButtonClick(item: IBasketItem) {
-    
+
     this.basket.addToBasketSingle(item.item, 1);
     console.log(this.basket.BasketList);
 
@@ -65,23 +61,23 @@ export class ItemListCustomElement {
     this.databaseAdd(item);
   }
 
-  databaseAdd(item: IBasketItem){
+  databaseAdd(item: IBasketItem) {
     if (this.basket.BasketList.length == 1 && this.basket.BasketList[0].quantity == 1) {
       this.orderService.createOrder(item).then(orderid => {
-        this.appRouter.navigateToRoute('orderdetail' , { id: orderid });
+        this.appRouter.navigateToRoute('orderdetail', { id: orderid });
         this.basket.orderId = orderid;
       });
     }
     else {
       this.orderService.syncOrder(this.basket.orderId);
-    }  
+    }
   }
 
   databaseRemove(item: IBasketItem) {
-    if(this.basket.BasketList.length == 0){
+    if (this.basket.BasketList.length == 0) {
       this.orderService.deleteOrder(this.basket.orderId);
     }
-    else{
+    else {
       this.orderService.syncOrder(this.basket.orderId);
     }
   }

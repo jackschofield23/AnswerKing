@@ -3,10 +3,10 @@
 
   <div class="box">
     <ul class="list-group">
-      <li repeat.for="category of categories" class="box ${category.id == $parent.selectedid ? 'active' : ''}" >
+      <li repeat.for="category of categories" class="box ${category.id == $parent.selectedid ? 'active' : ''}">
         <a click.delegate="$parent.select(category)">
-            <h4 class="categorytitle">${category.title}</h4>
-        </a>         
+          <h4 class="categorytitle">${category.title}</h4>
+        </a>
       </li>
     </ul>
   </div>

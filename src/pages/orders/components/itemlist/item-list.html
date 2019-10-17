@@ -1,34 +1,36 @@
 <template>
-    <require from="./item-list.scss"></require>
-    <require from="../../../../resources/value-converters/currency-format"></require>
-  
+  <require from="./item-list.scss"></require>
+  <require from="../../../../resources/value-converters/currency-format"></require>
 
-  
-    <div class="box">
-      <ul class="list-group">
-        <li repeat.for="item of displayitems"  class="box" >
-            <a>
-              
-              <div class="container">
-                  <div class="middle-content" click.delegate="$parent.addButtonClick(item)">
-                      <h4 class="itemtitle">${item.item.title}</h4>
-                      <p >${item.item.description}</p>
-                  </div>
-          
-                  <div class="inner-content">
-                    <h4 class="itemtitle" style="display: inline-block;  padding: 5px">£${item.item.price | currencyFormat} </h4>
-                   <button style="display: inline-block;" click.delegate="$parent.minusButtonClick(item)">-</button>
-                    <h4 style="display: inline-block; padding: 5px " class="itemtitle">${item.quantity}</h4>
-                    <button style="display: inline-block;" click.delegate="$parent.addButtonClick(item)">+</button>
-                  </div>  
-              </div>
-          
-  
-            </a>
-       
-        </li>
-      </ul>
-    </div>
+  <div class="box">
+    <ul class="list-group">
+      <li repeat.for="item of displayitems" class="box">
+        <a>
+          <div class="columns">
+            <div class="column is-four-fifths-fullhd" click.delegate="$parent.addButtonClick(item)">
+              <h4 class="itemtitle">${item.item.title}</h4>
+              <p>${item.item.description}</p>
+            </div>
 
-  </template>
-  
+            <div class="column is-narrow">
+              <h4 class="itemtitle" style="  padding: 5px">£${item.item.price | currencyFormat} </h4>
+            </div>
+
+            <div class="column is-narrow">
+              <button class="button is-active is-link is-size-5"
+                click.delegate="$parent.minusButtonClick(item)"><strong>-</strong></button>
+            </div>
+            <div class="column is-narrow">
+              <h4 style="display: inline-block; padding: 5px " class="itemtitle">${item.quantity}</h4>
+            </div>
+            <div class="column is-narrow">
+              <button class="button is-active is-link is-size-5"
+                click.delegate="$parent.addButtonClick(item)"><strong>+</strong></button>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</template>

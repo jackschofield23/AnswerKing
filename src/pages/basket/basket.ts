@@ -1,6 +1,4 @@
-import { EventAggregator } from 'aurelia-event-aggregator';
-import { isBigIntLiteral } from "@babel/types";
-import { bindable, observable } from 'aurelia-framework';
+import {observable } from 'aurelia-framework';
 
 
 export class Basket {
@@ -14,16 +12,10 @@ export class Basket {
 
   private constructor() { }
 
-  // public static get Instance()
-  // {
-  //   return this._instance || (this._instance = new this());
-  // }
-
   static getInstance(): Basket {
     if (!Basket._instance) {
       Basket._instance = new Basket();
     }
-
     return Basket._instance;
   }
 
@@ -65,20 +57,20 @@ export class Basket {
     }
   }
 
-  public retrieveFromDB(order: IOrder, allitems: IItem[]){
+  public retrieveFromDB(order: IOrder, allitems: IItem[]) {
     this.orderId = order.id;
-    if(this.BasketList.length == 0){
-      order.items.forEach(inputitem => { 
+    if (this.BasketList.length == 0) {
+      order.items.forEach(inputitem => {
         var items: IBasketItem[] = this.BasketList.filter(item => item.item.id == inputitem.id);
-        
+
         if (items === undefined || items.length == 0) {
-          var filtereditem : IItem[] = allitems.filter(item => item.id == inputitem.id);
-          if(filtereditem.length == 1){
+          var filtereditem: IItem[] = allitems.filter(item => item.id == inputitem.id);
+          if (filtereditem.length == 1) {
             var newBasketItem: IBasketItem = { item: filtereditem[0], quantity: 1 };
             this.BasketList.push(newBasketItem);
           }
         }
-        else if (items.length == 1){ 
+        else if (items.length == 1) {
           items[0].quantity += 1;
         }
       });
@@ -94,9 +86,7 @@ export class Basket {
     else {
       this.BasketList.forEach(item => {
         if (item.item.id == basketitem.id) {
-          
-          this.BasketList = this.BasketList.filter(e => e != item);        
-
+          this.BasketList = this.BasketList.filter(e => e != item);
         }
       });
     }

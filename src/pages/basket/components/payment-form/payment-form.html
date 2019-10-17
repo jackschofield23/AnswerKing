@@ -2,4 +2,101 @@
 
   <require from="./payment-form.scss"></require>
 
+  <div class="box" style=" margin-left: 5%; margin-right: 5%; margin-top:5%">
+    <div class="control">
+      <p class="title">Payments</p>
+    </div>
+    <div class="field" style="display: flex; justify-content: center; align-items: center ">
+      <input type="radio" id="payment1" class="is-checkradio is-medium" name="payment" model.bind="false" checked.bind="selectedpayment">
+      <label for="payment1" style="font-size: 30px">
+        Card
+      </label>
+
+      <input type="radio" id="payment2" class="is-checkradio is-medium" name="payment" model.bind="true" checked.bind="selectedpayment">
+      <label for="payment2" style="font-size: 30px">
+        Cash
+      </label>
+    </div>
+
+    <div class="field ${displaycard ? '' : 'is-hidden'}">
+      <div class="field">
+        <label class="label is-medium">Card</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-medium" type="email" placeholder="Extra small">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope fa-xs"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check fa-xs"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-medium" type="email" placeholder="Small">
+          <span class="icon is-left">
+            <i class="fas fa-envelope fa-sm"></i>
+          </span>
+          <span class="icon is-right">
+            <i class="fas fa-check fa-sm"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-medium" type="email" placeholder="Normal">
+          <span class="icon is-medium is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <span class="icon is-medium is-right">
+            <i class="fas fa-check"></i>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="field ${displaycash ? '' : 'is-hidden'}">
+      <div class="field">
+        <label class="label is-medium">Cash</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-medium" type="email" placeholder="Extra small">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope fa-xs"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-check fa-xs"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-medium" type="email" placeholder="Small">
+          <span class="icon is-left">
+            <i class="fas fa-envelope fa-sm"></i>
+          </span>
+          <span class="icon is-right">
+            <i class="fas fa-check fa-sm"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-medium" type="email" placeholder="Normal">
+          <span class="icon is-medium is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <span class="icon is-medium is-right">
+            <i class="fas fa-check"></i>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </template>

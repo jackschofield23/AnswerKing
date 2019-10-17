@@ -8,9 +8,6 @@ export class OrderTableCustomElement {
   private subscriptions: Subscription[] = [];
 
   public attached() {
-    this.subscriptions.push(
-      this.events.subscribe('order:added', this.orderAdded)
-    );
   }
 
   public detached() {

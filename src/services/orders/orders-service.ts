@@ -4,7 +4,7 @@ import { Basket } from '../../pages/basket/basket';
 
 @autoinject
 export class OrdersService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private basketlist: IBasketItem[] = [];
   public basket: Basket = Basket.getInstance();
@@ -13,7 +13,7 @@ export class OrdersService {
     const itemidarray: string[] = [];
     itemidarray.push(item.item.id);
     const body: IOrderCreate = {
-      items: itemidarray 
+      items: itemidarray
     };
 
     const response = await this.http.post('https://answer-king-java-jack.herokuapp.com/order', json(body));
@@ -36,12 +36,12 @@ export class OrdersService {
     for (let i = 0; i < this.basketlist.length; i++) {
       const basketitem = this.basketlist[i];
       for (let j = 0; j < basketitem.quantity; j++) {
-        itemidarray.push(basketitem.item.id);        
-      }      
+        itemidarray.push(basketitem.item.id);
+      }
     }
-   
+
     const body: IOrderCreate = {
-      items: itemidarray 
+      items: itemidarray
     };
 
     const response = await this.http.put(`https://answer-king-java-jack.herokuapp.com/order/${orderid}`, json(body));
@@ -62,9 +62,12 @@ export class OrdersService {
 
   }
 
-  public async getOrderByID(orderId : string): Promise<IOrder> {
+  public async getOrderByID(orderId: string): Promise<IOrder> {
     const response = await this.http.get(`https://answer-king-java-jack.herokuapp.com/order/${orderId}`);
 
+    if (!response.ok) {
+      return null;
+    }
     return response.ok ? response.json() : [];
   }
 

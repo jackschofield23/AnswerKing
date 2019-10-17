@@ -27,10 +27,6 @@ interface ILineItemProductCategory {
   description: string;
 }
 
-/**
- * This is the model that the API expects when
- * updating the order.
- */
 interface IOrderUpdate {
   lineItems: ILineItemUpdate[];
 }

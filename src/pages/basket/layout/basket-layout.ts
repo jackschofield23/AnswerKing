@@ -28,7 +28,6 @@ export class BasketLayout {
 
   public async activate(params) {
     this.orderId = params.id;
-
   }
 
   public async attached(){
@@ -63,15 +62,8 @@ export class BasketLayout {
 
   }
 
-
   public placeorderclick(){
-    if(this.basket.BasketList.length >= 1){
-      
+    if(this.basket.BasketList.length >= 1){      
     }
   }
-
-  
-
-
-
 }

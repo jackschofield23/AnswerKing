@@ -7,12 +7,10 @@ import { ItemService } from 'services/items/item-service';
 
 @autoinject
 export class CategoryListCustomElement {
-  constructor(private events: EventAggregator,     
+  constructor(private events: EventAggregator,
     private orderService: OrdersService,
     private categoriesService: CategoriesService,
-    private itemService: ItemService) {
-    
-  }
+    private itemService: ItemService) {}
 
   private subscriptions: Subscription[] = [];
 
@@ -22,15 +20,10 @@ export class CategoryListCustomElement {
   @bindable
   public selectedid: ICategoryId;
 
-
-  public async created(){
-    //this.categories = await this.categoriesService.getCategories();
+  public async created() {
   }
 
   public attached() {
-    this.subscriptions.push(
-      this.events.subscribe('category:added', this.orderAdded)
-    );
   }
 
   public detached() {
@@ -41,14 +34,8 @@ export class CategoryListCustomElement {
     console.log(item);
   }
 
-  selectedidChanged(newValue, oldValue){
-    //console.log(newValue);
-  }
-
   select(category) {
     this.selectedid = category.id;
     return true;
   }
-
-
 }

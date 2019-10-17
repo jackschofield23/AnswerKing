@@ -14,38 +14,33 @@ export class LoginLayout {
     private appRouter: AppRouter
   ) {}
 
-  
   @bindable
   public password: string;
 
-
   @bindable
   public username: string;
-  
+
   private correctpassword: string = "testpass";
   private correctusername: string = "testuser@gmail.com";
 
   public usernamevalid: boolean = false;
   public passwordvalid: boolean = false;
-  
 
-  passwordChanged(newvalue, oldvalue){
-    if(this.password.length > 6 || this.password.length < 1 || this.password == undefined){
+  passwordChanged(newvalue, oldvalue) {
+    if (this.password.length > 6 || this.password.length < 1 || this.password == undefined) {
       this.passwordvalid = true;
     }
-    else{
+    else {
       this.passwordvalid = false;
     }
   }
 
-  loginClicked(){
-      if(this.username == this.correctusername && this.password == this.correctpassword){
-        this.appRouter.navigateToRoute('admin');
-      }
-      else {
-        alert("Incorrect username or password");
-      }
+  loginClicked() {
+    if (this.username == this.correctusername && this.password == this.correctpassword) {
+      this.appRouter.navigateToRoute('admin');
+    }
+    else {
+      alert("Incorrect username or password");
+    }
   }
-
-
 }

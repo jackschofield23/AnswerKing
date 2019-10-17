@@ -1,24 +1,26 @@
 <template>
-    <require from="../components/basket-list/basket-list"></require>
-    <require from="./basket-layout.scss"></require>
-    <require from="../../../resources/value-converters/currency-format"></require>
+  <require from="../components/basket-list/basket-list"></require>
+  <require from="../components/payment-form/payment-form"></require>
+  <require from="./basket-layout.scss"></require>
+  <require from="../../../resources/value-converters/currency-format"></require>
 
-    <div class="basketdiv">
-        <basket-list basketlist.two-way="basketlist">
+  <div class="basketdiv">
+    <basket-list basketlist.two-way="basketlist">
+    </basket-list>
+  </div>
 
-        </basket-list>
+  <div class="box" style=" margin-left: 5%; margin-right: 5%; ">
+    <p class="title" style="padding: 5px; ">Total
+      <span class="title" style=" float:right;">£${baskettotal | currencyFormat}</span>
+    </p>
+  </div>
 
-    </div>
+  <payment-form>
+  </payment-form>
 
-    <div class="box" style=" margin-left: 5%; margin-right: 5%; ">
-         <p class="title" style="padding: 5px; ">Total   
-          <span class="title" style=" float:right;">£${baskettotal | currencyFormat}</span>
-         </p>
-
-    </div>
-
-    <div class="box" style=" margin-left: 5%; margin-right: 5%; display: flex; justify-content: flex-end">
-      <button class="button is-large is-success" style="padding: 5px;" click.delegate="placeorderclick()">Place Order</button>
-    </div>
+  <div class="box" style=" margin-left: 5%; margin-right: 5%; display: flex; justify-content: flex-end">
+    <button class="button is-large is-success" style="padding: 5px;" click.delegate="placeorderclick()">Place
+      Order</button>
+  </div>
 
 </template>

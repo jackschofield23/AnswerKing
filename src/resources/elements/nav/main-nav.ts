@@ -10,12 +10,12 @@ import { AppRouter } from 'aurelia-router';
 
 @autoinject
 export class MainNavCustomElement {
-  constructor(private events: EventAggregator,  
+  constructor(private events: EventAggregator,
     private orderService: OrdersService,
     private categoriesService: CategoriesService,
     private itemService: ItemService,
     private appRouter: AppRouter
-  ) {}
+  ) { }
 
   private subscriptions: Subscription[] = [];
 
@@ -42,7 +42,7 @@ export class MainNavCustomElement {
         this.basketquantity -= 1;
       }),
       this.events.subscribe('orderid', orderid => {
-        if(orderid != undefined){
+        if (orderid != undefined) {
           this.orderid = orderid;
         }
       })
@@ -64,9 +64,8 @@ export class MainNavCustomElement {
   }
 
   public basketClicked() {
-    if(this.orderid != undefined)
-    {
-      this.appRouter.navigateToRoute('basketid' , { id: this.orderid });
+    if (this.orderid != undefined) {
+      this.appRouter.navigateToRoute('basketid', { id: this.orderid });
     }
     else {
       this.appRouter.navigateToRoute('basket');

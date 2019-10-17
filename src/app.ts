@@ -5,6 +5,7 @@ import { RouterConfiguration } from 'aurelia-router';
 //require('bootstrap');
 var numeral = require('numeral');
 
+
 @autoinject
 export class App {
   public configureRouter(config: RouterConfiguration) {
@@ -20,6 +21,12 @@ export class App {
         name: 'welcome',
         title: 'Welcome',
         moduleId: PLATFORM.moduleName('pages/welcome/welcome-layout'),
+      },
+      {
+        route: 'error404',
+        name: 'error404',
+        title: '404 Not Found',
+        moduleId: PLATFORM.moduleName('pages/error/404/error404-layout'),
       },
       {
         route: 'login',
@@ -50,13 +57,13 @@ export class App {
         name: 'basketid',
         title: 'Basket',
         moduleId: PLATFORM.moduleName('pages/basket/layout/basket-layout'),
-      },   
+      },
       {
         route: 'basket',
         name: 'basket',
         title: 'Basket',
         moduleId: PLATFORM.moduleName('pages/basket/layout/basket-layout'),
-      },      
+      },
     ]);
   }
 }

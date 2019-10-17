@@ -28,13 +28,9 @@ export class BasketListCustomElement {
 
 
   public async created() {
-    //this.categories = await this.categoriesService.getCategories();
   }
 
   public attached() {
-    this.subscriptions.push(
-      this.events.subscribe('category:added', this.orderAdded)
-    );
   }
 
   public detached() {
@@ -44,11 +40,6 @@ export class BasketListCustomElement {
   private orderAdded(item: IItem) {
     console.log(item);
   }
-
-  selectedidChanged(newValue, oldValue) {
-    //console.log(newValue);
-  }
-
 
   addButtonClick(item: IBasketItem) {
     this.basket.addToBasketSingle(item.item, 1);
