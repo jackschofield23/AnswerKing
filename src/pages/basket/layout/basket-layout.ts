@@ -7,7 +7,7 @@ import { CategoriesService } from 'services/categories/categories-service';
 import { OrdersService } from 'services/orders/orders-service';
 import { ItemService } from 'services/items/item-service';
 import { Basket } from '../basket';
-import { EventAggregator } from 'aurelia-event-aggregator';
+import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 import { AppRouter } from 'aurelia-router';
 import { PaymentsService } from 'services/payments/payments-service';
 import { CardPrompt } from '../dialog/card-dialog';
@@ -25,6 +25,7 @@ export class BasketLayout {
 
   public basket: Basket = Basket.getInstance();
 
+  private subscriptions: Subscription[] = [];
   
   public basketlist: IBasketItem[] = this.basket.BasketList;  
   public allitems: IItem[] = [];
@@ -62,31 +63,35 @@ export class BasketLayout {
     }
 
     this.events.publish('basketset');  
-    
 
     this.basketlist.forEach(item => {
       this.baskettotal += (item.item.price * item.quantity);
     });
+    
+    this.subscriptions.push(
+      this.events.subscribe('basketadded', payload =>{
+         this.baskettotal += payload.item.price;
+      }),  
+      this.events.subscribe('basketremoved', payload =>{
+        this.baskettotal -= payload.item.price;
+      }),  
+      this.events.subscribe('basketdeleted', payload =>{
+        this.baskettotal -= (payload.item.price * payload.quantity);
+      }),
+      this.events.subscribe('cash', payload =>{
+        this.card = false;
+        this.cash = true;
+      }),
+      this.events.subscribe('card', payload =>{
+        this.card = true;
+        this.cash = false;
+      })
+    );
 
-    this.events.subscribe('basketadded', payload =>{
-       this.baskettotal += payload.item.price;
-    });
+  }
 
-    this.events.subscribe('basketremoved', payload =>{
-      this.baskettotal -= payload.item.price;
-    });
-
-    this.events.subscribe('basketdeleted', payload =>{
-      this.baskettotal -= (payload.item.price * payload.quantity);
-    });
-    this.events.subscribe('cash', payload =>{
-      this.card = false;
-      this.cash = true;
-    });
-    this.events.subscribe('card', payload =>{
-      this.card = true;
-      this.cash = false;
-    });
+  public detached() {
+    this.subscriptions.forEach(s => s.dispose());
   }
 
   private async cardpayment(){
