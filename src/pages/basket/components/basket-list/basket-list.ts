@@ -52,23 +52,23 @@ export class BasketListCustomElement {
     this.databaseAdd(item);
   }
 
-  databaseAdd(item: IBasketItem){
+  databaseAdd(item: IBasketItem) {
     if (this.basket.BasketList.length == 1 && this.basket.BasketList[0].quantity == 1) {
       this.orderService.createOrder(item).then(orderid => {
-        this.appRouter.navigateToRoute('orderdetail' , { id: orderid });
+        this.appRouter.navigateToRoute('orderdetail', { id: orderid });
         this.basket.orderId = orderid;
       });
     }
     else {
       this.orderService.syncOrder(this.basket.orderId);
-    }  
+    }
   }
 
   databaseRemove(item: IBasketItem) {
-    if(this.basket.BasketList.length == 0){
+    if (this.basket.BasketList.length == 0) {
       this.orderService.deleteOrder(this.basket.orderId);
     }
-    else{
+    else {
       this.orderService.syncOrder(this.basket.orderId);
     }
   }
@@ -86,12 +86,12 @@ export class BasketListCustomElement {
     }
   }
 
-  deleteClick(item: IBasketItem){
+  deleteClick(item: IBasketItem) {
     this.basket.deleteFromBasket(item.item);
     this.events.publish('basketdeleted', item);
-    this.basketlist = this.basketlist.filter(e => e != item);  
-    
+    this.basketlist = this.basketlist.filter(e => e != item);
+
     this.databaseRemove(item);
-  }  
+  }
 
 }

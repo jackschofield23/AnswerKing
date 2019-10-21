@@ -15,7 +15,7 @@ export class HomeLayout {
     private itemService: ItemService,
     private events: EventAggregator,
     private appRouter: AppRouter
-  ) {}
+  ) { }
 
   public categories: ICategory[] = [];
   public allitems: IItem[] = [];
@@ -35,7 +35,7 @@ export class HomeLayout {
     this.orderId = params.id;
 
   }
-  
+
 
   public async attached() {
     // Retrieve the order from the API
@@ -46,53 +46,53 @@ export class HomeLayout {
     this.categories = await this.categoriesService.getCategories();
     this.allitems = await this.itemService.getItems();
 
-    if(this.orderId){
+    if (this.orderId) {
       this.events.publish('orderid', this.orderId);
       await this.orderService.getOrderByID(this.orderId)
-      .then(order => {
-        console.log(order);
-        if(order == null){
-          this.appRouter.navigateToRoute('error404');
-        }
-        else{
-          this.basket.retrieveFromDB(order, this.allitems);
-          this.events.publish('basketset');  
-         
-        }       
-      });
+        .then(order => {
+          console.log(order);
+          if (order == null) {
+            this.appRouter.navigateToRoute('error404');
+          }
+          else {
+            this.basket.retrieveFromDB(order, this.allitems);
+            this.events.publish('basketset');
+
+          }
+        });
     }
 
-    const firstCategory : string = '0';
+    const firstCategory: string = '0';
 
     if (firstCategory) {
       this.selectCategory(firstCategory);
     }
 
 
-    
+
   }
 
   valueChanged(newValue) {
-    if (newValue) {}      
+    if (newValue) { }
   }
 
   public selectCategory(id: string) {
-    if(id == "0"){
+    if (id == "0") {
       this.items = this.allitems;
     }
-    else{
+    else {
       this.categories.forEach(c => {
-        if(c.id == id){
+        if (c.id == id) {
           this.currentCategory = c;
-        
+
           this.items = this.allitems.filter(item => item.categories.some(cat => cat.id == id));
-         
+
         }
       });
     }
   }
 
-  selectedidChanged(newvalue, oldvalue){
+  selectedidChanged(newvalue, oldvalue) {
 
     this.selectCategory(newvalue);
   }
