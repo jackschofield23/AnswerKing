@@ -1,0 +1,19 @@
+<template>
+    <require from="../../../resources/value-converters/currency-format"></require>
+
+  <ai-dialog>
+     <ai-dialog-body>
+       <form class="box" style="display: flex; flex-direction: column; align-items: center; justify-content: center ">
+          <h2 class="text is-size-4">Insufficient Funds</h2>
+          <h2 class="text is-size-4">Please insert:</h2>
+          <h2 class="text is-size-1"><strong>£${message | currencyFormat}</strong></h2>
+          <button class="button is-info is-large" click.trigger = "controller.ok(message)">Ok</button>
+       </form>
+         
+     </ai-dialog-body>
+
+     <ai-dialog-footer>
+
+     </ai-dialog-footer>	
+  </ai-dialog>	
+</template>

@@ -15,11 +15,11 @@
     </p>
   </div>
 
-  <payment-form cashamount.two-way="cashamount" carddetails.two-way="carddetails">
+  <payment-form cashamount.two-way="cashamount" cardname.two-way="cardname" cardnum.two-way="cardnum" cardexpirydate.two-way="cardexpirydate" cardcvv.two-way="cardcvv">
   </payment-form>
 
   <div class="box" style=" margin-left: 5%; margin-right: 5%; display: flex; justify-content: flex-end">
-    <button class="button is-large is-success" style="padding: 5px;" click.delegate="placeorderclick()">Place
+    <button disabled.bind="disableorderbutton" class="button is-large is-success" style="padding: 5px;" click.delegate="placeorderclick()">Place
       Order</button>
   </div>
 

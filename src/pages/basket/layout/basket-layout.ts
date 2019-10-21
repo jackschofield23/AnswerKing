@@ -11,6 +11,8 @@ import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
 import { AppRouter } from 'aurelia-router';
 import { PaymentsService } from 'services/payments/payments-service';
 import { CardPrompt } from '../dialog/card-dialog';
+import { NotenoughPrompt } from '../dialog/notenough-dialog';
+import { StringLiteral } from '@babel/types';
 
 @autoinject
 export class BasketLayout {
@@ -33,11 +35,19 @@ export class BasketLayout {
   @observable
   public baskettotal: number = 0;
 
+  @observable
   public cashamount: number;
-  public carddetails: ICardDetails;
+  
+  @observable public cardname: string;
+  @observable public cardnum: string;
+  @observable public cardexpirydate: string;
+  @observable public cardcvv: string;
+
 
   public cash: boolean = false;
   public card: boolean = false;
+
+  public disableorderbutton = true;
 
   private orderId: string;
 
@@ -64,8 +74,11 @@ export class BasketLayout {
 
     this.events.publish('basketset');  
 
-    this.basketlist.forEach(item => {
+    this.basketlist.forEach((item, key, arr) => {
       this.baskettotal += (item.item.price * item.quantity);
+      if(Object.is(arr.length - 1, key)){
+        this.events.publish('totalprice', this.baskettotal);
+      }
     });
     
     this.subscriptions.push(
@@ -95,7 +108,7 @@ export class BasketLayout {
   }
 
   private async cardpayment(){
-    if(this.carddetails != undefined && this.carddetails.expirydate.length > 0 && this.carddetails.name.length > 0 && this.carddetails.cardnumber.length > 0 && this.carddetails.CVV.length > 0)
+    if(this.cardexpirydate && this.cardname.length > 0 && this.cardnum.length > 0 && this.cardcvv.length > 0)
     {
       const paymentupdate : IPaymentUpdate = {orderId: this.basket.orderId, amount: this.baskettotal};
       var response = await this.paymentsService.payOrder(paymentupdate);
@@ -105,8 +118,9 @@ export class BasketLayout {
   
           if (!response.wasCancelled) {
              console.log('OK');
+             this.appRouter.navigateToRoute('ordercomplete');
           } else {
-             console.log('cancelled');
+             this.appRouter.navigateToRoute('ordercomplete');
           }
           console.log(response);
        });
@@ -116,12 +130,9 @@ export class BasketLayout {
 
   private async cashpayment(){
     if(this.cashamount != undefined && this.cashamount > 0){
-      const paymentupdate : IPaymentUpdate = {orderId: this.basket.orderId, amount: this.cashamount};
-      var response = await this.paymentsService.payOrder(paymentupdate);
-
-      if(response.change > 0 && response.complete){
-        this.dialogService.open( {viewModel: ChangePrompt, model: `${response.change}`}).then(response => {
-  
+      if(this.baskettotal > this.cashamount){
+        this.dialogService.open( {viewModel: NotenoughPrompt, model: `${this.baskettotal - this.cashamount}`}).then(response => {
+    
           if (!response.wasCancelled) {
              console.log('OK');
           } else {
@@ -129,6 +140,22 @@ export class BasketLayout {
           }
           console.log(response);
        });
+      }
+      else{
+        const paymentupdate : IPaymentUpdate = {orderId: this.basket.orderId, amount: this.cashamount};
+        var response = await this.paymentsService.payOrder(paymentupdate);
+  
+        if(response.change > 0 && response.complete){
+          this.dialogService.open( {viewModel: ChangePrompt, model: `${response.change}`}).then(response => {
+    
+            if (!response.wasCancelled) {
+               console.log('OK');
+            } else {
+               console.log('cancelled');
+            }
+            console.log(response);
+         });
+        }
       }
     }
   }
@@ -141,5 +168,37 @@ export class BasketLayout {
         this.cashpayment();
       }      
     }
+  }
+
+  cardnameChanged(){
+    this.checkCardDetails();
+  }
+  cardnumChanged(){
+    this.checkCardDetails();
+  }
+  cardcvvChanged(){
+    this.checkCardDetails();
+  }
+  cardexpirydateChanged(){
+    this.checkCardDetails();
+  }
+
+  public checkCardDetails(){
+    if(this.card && this.cardname != undefined && this.cardnum != undefined && this.cardcvv != undefined && this.cardexpirydate != undefined && this.cardname != "" && this.cardnum != "" && this.cardcvv != "" && this.cardexpirydate != ""){
+      this.disableorderbutton = false;
+    }
+    else{
+      this.disableorderbutton = true;
+    }
+  }
+  cashamountChanged(){
+    console.log(this.cashamount);
+    if(this.cashamount >= this.baskettotal && this.cash){
+      this.disableorderbutton = false;
+    }
+    else{
+      this.disableorderbutton = true;
+    }
+
   }
 }

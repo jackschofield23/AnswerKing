@@ -29,7 +29,7 @@
               <div class="field">
                 <label class="label is-medium">Card</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input is-medium" type="email" placeholder="Name on Card" value.bind="carddetails.name">
+                  <input class="input is-medium" placeholder="Name on Card" value.bind="cardname">
                   <span class="icon is-small is-left">
                     <i class="fas fa-envelope fa-xs"></i>
                   </span>
@@ -41,7 +41,7 @@
 
               <div class="field">
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input is-medium" type="email" value.bind="carddetails.cardnumber" placeholder="Card Number">
+                  <input class="input is-medium" type="number" value.bind="cardnum" placeholder="Card Number">
                   <span class="icon is-left">
                     <i class="fas fa-envelope fa-sm"></i>
                   </span>
@@ -53,7 +53,7 @@
 
               <div class="field">
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input is-medium" type="email" value.bind="carddetails.expirydate" placeholder="Expiry Date">
+                  <input class="input is-medium" type="date" value.bind="cardexpirydate" placeholder="Expiry Date">
                   <span class="icon is-medium is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
@@ -66,7 +66,7 @@
               
               <div class="field">
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input is-medium" type="email" value.bind="carddetails.CVV" placeholder="CVV">
+                  <input class="input is-medium" type="number" value.bind="cardcvv" placeholder="CVV">
                   <span class="icon is-medium is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
@@ -93,13 +93,14 @@
               <div class="field">
                 <label class="label is-medium">Cash</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input ${cashamountvalid ? '' : 'is-danger'} is-medium" type="number" value.bind="cashamount" placeholder="Cash Given (£)" required>
+                  <input class="input ${controller.errors.length > 0 ? 'is-danger' : ''} is-medium" type="number" value.bind="cashamount & validate" placeholder="Cash Given (£)">
                   <span class="icon is-small is-left">
                     <i class="fas fa-envelope fa-xs"></i>
                   </span>
                   <span class="icon is-small is-right">
                     <i class="fas fa-check fa-xs"></i>
                   </span>
+                  <p if.bind="controller.errors.length > 0">${controller.errors}</p>
                 </div>
               </div>
 
